@@ -1,0 +1,86 @@
+# ==========================
+# 🌿 Global ignores
+# ==========================
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IntelliJ / VSCode / Eclipse
+.idea/
+.vscode/
+*.iml
+*.class
+*.project
+*.classpath
+*.settings/
+bin/
+build/
+
+# ==========================
+# ⚛️ React Frontend (AiFrontend/)
+# ==========================
+/AiFrontend/node_modules/
+/AiFrontend/.pnp/
+/AiFrontend/.pnp.js
+/AiFrontend/coverage/
+/AiFrontend/build/
+/AiFrontend/dist/
+/AiFrontend/.next/
+/AiFrontend/out/
+/AiFrontend/npm-debug.log*
+/AiFrontend/yarn-debug.log*
+/AiFrontend/yarn-error.log*
+/AiFrontend/.eslintcache
+/AiFrontend/.turbo
+/AiFrontend/.parcel-cache
+/AiFrontend/.vite
+/AiFrontend/.DS_Store
+/AiFrontend/public/static/
+
+# ==========================
+# ☕ Spring Boot Backend (SpringAiProject/)
+# ==========================
+/SpringAiProject/target/
+/SpringAiProject/.gradle/
+/SpringAiProject/build/
+/SpringAiProject/logs/
+/SpringAiProject/out/
+/SpringAiProject/tmp/
+/SpringAiProject/.mvn/wrapper/maven-wrapper.jar
+/SpringAiProject/.mvn/timing.properties
+/SpringAiProject/.idea/
+/SpringAiProject/.classpath
+/SpringAiProject/.project
+/SpringAiProject/.settings/
+/SpringAiProject/HELP.md
+/SpringAiProject/.env
+/SpringAiProject/src/main/resources/*.properties
+
+# ==========================
+# 🔒 Security / Secrets
+# ==========================
+*.key
+*.pem
+*.crt
+*.keystore
+*.jks
+*.p12
+*.db
+*.sqlite
+
+# ==========================
+# 🚀 OS & Misc
+# ==========================
+ehthumbs.db
+Icon?
+Desktop.ini
