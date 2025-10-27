@@ -21,3 +21,4 @@
 - `git push -u origin master` -> final command to push codes on github
 - `git rm --cached SpringAiProject/src/main/resources/*.properties`
 - `git restore --staged src/main/resources/*.properties`
+- `git pull origin master --allow-unrelated-histories`
