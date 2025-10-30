@@ -5,13 +5,13 @@ import com.training.model.Output;
 import com.training.model.Review;
 import com.training.service.AiService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -24,9 +24,21 @@ public class AiController {
         this.aiService=aiService;
     }
 
+    // @PostMapping("/chat")
+    // public Output chat(@RequestBody @Valid Input input) {
+    //     return new Output(aiService.generateText(input.prompt()));
+    // }
     @PostMapping("/chat")
-    public Output chat(@RequestBody @Valid Input input) {
-        return new Output(aiService.generateText(input.prompt()));
+    ResponseEntity<Output> chat(@RequestBody @Valid Input input,
+                                @CookieValue(name = "X-CONV-ID", required = false) String convId) {
+        String conversationId = convId == null ? UUID.randomUUID().toString() : convId;
+        String response = aiService.generateText(input.prompt(),conversationId);
+        ResponseCookie cookie = ResponseCookie.from("X-CONV-ID", conversationId)
+                .path("/")
+                .maxAge(3600)
+                .build();
+        Output output = new Output(response);
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(output);
     }
     @PostMapping("/review")
     public Review review(@RequestBody @Valid Input input) {

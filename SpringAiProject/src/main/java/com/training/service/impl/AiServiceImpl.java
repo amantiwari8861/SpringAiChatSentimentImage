@@ -12,6 +12,8 @@ import org.springframework.ai.image.ImageResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 
 import java.util.List;
 
@@ -24,18 +26,25 @@ public class AiServiceImpl implements AiService {
 
     AiServiceImpl(ChatClient.Builder builder, @Value("classpath:/prompts/sentiment-analysis.st")
                   Resource promptResource,
-                  ImageModel imageModel
+                  ImageModel imageModel,
+                  ChatMemory chatMemory
                   ) {
         this.chatClient = builder
-                .defaultAdvisors(new SimpleLoggerAdvisor())
+                .defaultAdvisors(
+                    MessageChatMemoryAdvisor.builder(chatMemory).build(),
+                new SimpleLoggerAdvisor())
                 .build();
         this.promptResource = promptResource;
         this.imageModel = imageModel;
     }
 
     @Override
-    public String generateText(String userPrompt) {
-        return chatClient.prompt(userPrompt).call().content();
+    public String generateText(String userPrompt,String conversationId) {
+        return chatClient.prompt()
+                .user(userPrompt)
+                .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, conversationId))
+                .call().content();
+        // return chatClient.prompt(userPrompt).call().content();
     }
 
     @Override
@@ -52,21 +61,6 @@ public class AiServiceImpl implements AiService {
         ImagePrompt imagePrompt = new ImagePrompt(prompt);
         ImageResponse response = imageModel.call(imagePrompt);
         // Assuming the response contains a Base64-encoded image
-//        System.out.println(response.toString());
-//        System.out.println(response.getResult());
-//        System.out.println(response.getResult().getOutput());
         return response.getResult().getOutput().getB64Json();
     }
 }
-
-//[
-//        {
-//            role:"system",
-//            prompt:""
-//        },
-//        {
-//            role:"user",
-//        prompt:""
-//        }]
-
-
