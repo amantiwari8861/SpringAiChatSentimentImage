@@ -6,7 +6,7 @@ export default function ReviewBox() {
     const [loading, setLoading] = useState(false);
     const [reviews, setReviews] = useState([]);
 
-    const API_URL = import.meta.env.VITE_API_URL;
+    const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
     const fetchReviews = async () => {
         try {

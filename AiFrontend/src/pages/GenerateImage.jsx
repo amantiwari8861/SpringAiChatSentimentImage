@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function ImageGenerator() {
   const [prompt, setPrompt] = useState("");
-  const [imageBase64, setImageBase64] = useState(null);
+  const [imageBase64, setImageBase64] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -16,7 +16,7 @@ export default function ImageGenerator() {
     try {
       // https://localhost:8080/api/v1/generate-image?prompt=create a golden retreiver image who is coding
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/generate-image`,
+        `${import.meta.env.VITE_BACKEND_API_URL}/generate-image`,
         {
           params: { prompt },
         }
@@ -32,8 +32,22 @@ export default function ImageGenerator() {
     }
   };
 
+  // Download function (no lib)
+  const downloadImage = () => {
+    if (!imageBase64) return;
+    console.log("downloading image...");
+    console.log(`data:image/png;base64,${imageBase64}`);
+    // Create a temporary <a> tag and trigger download
+    const link = document.createElement("a");
+    link.href = `data:image/png;base64,${imageBase64}`; // Base64 string with MIME type
+    link.download = "downloaded-image.png"; // file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <div className="max-w-xl mx-auto mt-12 p-6 bg-white rounded-2xl shadow-lg">
+    <div className="max-w-xl mx-auto my-12 p-6 bg-white rounded-2xl shadow-lg border-2 border-black">
       <h2 className="text-2xl font-bold mb-4 text-center">
         AI Image Generator
       </h2>
@@ -66,6 +80,15 @@ export default function ImageGenerator() {
           />
         </div>
       )}
+      <button
+        className="btn btn-primary my-3 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:bg-gray-400"
+        disabled={!imageBase64}
+        onClick={downloadImage}
+      >
+        Download Image
+      </button>
+
     </div>
   );
 }
+// generate an illustration to put on my technical website's homepage in which student is studying with transparent background

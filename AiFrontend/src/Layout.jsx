@@ -1,14 +1,16 @@
-import { Outlet } from "react-router"
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
+import { Outlet } from 'react-router';
+import Footer from './components/Footer';
+import Navbar from './components/navbar';
+import { ToastContainer } from 'react-toastify';
 
 const Layout = () => {
   return (
-    <>
-        <Navbar/>
-        <Outlet/>
-        <Footer/>
-    </>
+    <div>
+      <ToastContainer/>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </div>
   )
 }
 

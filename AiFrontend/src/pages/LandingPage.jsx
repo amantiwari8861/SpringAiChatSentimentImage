@@ -1,13 +1,15 @@
-import React from 'react'
-import ChatBot from '../components/ChatBot'
-import ReviewBox from '../components/ReviewBox'
+import Gallery from "../components/Gallery"
+import HeroSlider from "../components/HeroSlider"
+import ChatBot from "../components/ChatBot"
+import ReviewBox from "../components/ReviewBox"
 
 const LandingPage = () => {
   return (
     <div>
-      <h1>Landing Page</h1>
-      <ReviewBox/>
-      <ChatBot />
+      <HeroSlider/>
+      <Gallery/>
+      <ChatBot/>
+      <ReviewBox />
     </div>
   )
 }
