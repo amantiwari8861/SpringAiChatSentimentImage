@@ -64,7 +64,7 @@ const Navbar = () => {
                         <li>
                             <NavLink
                                 to="/"
-                                className={({ isActive }) => `block text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
+                                className={({ isActive }) => `block dark:text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
                                 aria-current="page"
                             >
                                 Home
@@ -73,7 +73,7 @@ const Navbar = () => {
                         <li>
                             <NavLink
                                 to="/about"
-                                className={({ isActive }) => `block text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
+                                className={({ isActive }) => `block dark:text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
                             >
                                 About
                             </NavLink>
@@ -81,7 +81,7 @@ const Navbar = () => {
                         <li>
                             <NavLink
                                 to="/services"
-                                className={({ isActive }) => `block text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
+                                className={({ isActive }) => `block dark:text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
                             >
                                 Services
                             </NavLink>
@@ -89,7 +89,7 @@ const Navbar = () => {
                         <li>
                             <NavLink
                                 to="/generate-image"
-                                className={({ isActive }) => `block text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
+                                className={({ isActive }) => `block dark:text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
                             >
                                 Image Generator
                             </NavLink>
@@ -97,7 +97,7 @@ const Navbar = () => {
                         <li>
                             <NavLink
                                 to="/contact"
-                                className={({ isActive }) => `block text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
+                                className={({ isActive }) => `block dark:text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
                             >
                                 Contact us
                             </NavLink>
@@ -105,7 +105,7 @@ const Navbar = () => {
                         <li>
                             <NavLink
                                 to="/cart"
-                                className={({ isActive }) => `block text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
+                                className={({ isActive }) => `block dark:text-white md:p-0 rounded-sm py-2 px-3 ${isActive ? "navlink-active" : 'navlink'}`}
                             >
                                 Cart ({products.length})
                             </NavLink>
